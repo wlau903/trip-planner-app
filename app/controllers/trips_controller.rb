@@ -49,5 +49,17 @@ class TripsController < ApplicationController
       redirect("/login")
     end
   end
-  
+
+  patch '/trips/:id' do
+    @trip = Trip.find_by_id(params[:id])
+    if params[:name] == "" || params[:date] == "" || params[:destination] == "" || params[:activities] == ""
+      redirect("/trips/#{@trip.id}/edit")
+    else
+      @trip.update(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities])
+      @trip.user_id = current_user.id
+      @trip.save
+      redirect("/trips/#{@trip.id}")
+    end
+  end
+
 end
