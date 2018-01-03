@@ -10,5 +10,12 @@ class TripsController < ApplicationController
     end
   end
 
-  
+  get '/trips/new' do
+    if logged_in?
+      erb :'/trips/create_trip'
+    else
+      redirect("/login")
+    end
+  end
+
 end
