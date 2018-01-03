@@ -37,4 +37,17 @@ class TripsController < ApplicationController
     end
   end
 
+  get '/trips/:id/edit' do
+    if logged_in?
+      @trip = Trip.find_by_id(params[:id])
+      if @trip.user_id == current_user.id
+        erb :'/trips/edit_trip'
+      else
+        redirect("/trips")
+      end
+    else
+      redirect("/login")
+    end
+  end
+  
 end
