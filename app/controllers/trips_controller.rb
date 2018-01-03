@@ -28,4 +28,13 @@ class TripsController < ApplicationController
     end
   end
 
+  get '/trips/:id' do
+    if logged_in?
+      @trip = Trip.find_by_id(params[:id])
+      erb :'/trips/show_trip'
+    else
+      redirect("/login")
+    end
+  end
+
 end
