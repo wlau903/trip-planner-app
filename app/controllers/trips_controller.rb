@@ -18,4 +18,14 @@ class TripsController < ApplicationController
     end
   end
 
+  post '/trips' do
+    if params[:name] == "" || params[:date] == "" || params[:destination] == "" || params[:activities] == ""
+      redirect("/trips/new")
+    else
+      @trip = current_user.trips.create(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities])
+      @trip.save
+      redirect("/trips/#{@trip.id}")
+    end
+  end
+
 end
