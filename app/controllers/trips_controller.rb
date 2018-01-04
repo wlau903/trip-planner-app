@@ -62,4 +62,14 @@ class TripsController < ApplicationController
     end
   end
 
+  get '/trips/:id/delete' do
+    if logged_in?
+      @trip = Trip.find_by_id(params[:id]) #show message: are you sure?
+      @trip.delete
+      redirect("/trips")
+    else
+      redirect("/login")
+    end
+  end
+
 end
