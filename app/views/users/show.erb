@@ -1,1 +1,21 @@
+<% if @user == current_user %>
 
+  <h1>Hi, <%= @user.username %></h1>
+  <h3>Your Trips:</h3>
+  <% @user.trips.each do |trip| %>
+    <h4><%= trip.name%></h4>
+    <p><%= trip.date %></p>
+    <p><%= trip.destination %></p>
+    <p><%= trip.activities %></p>
+  <% end %>
+
+<% else %>
+
+    <h1><%= @user.username %></h1>
+    <h3>Their Trips:</h3>
+    <% @user.trips.each do |trip| %>
+      <h4><%= trip.name%></h4>
+      <p><%= trip.destination %></p>
+      <p><%= trip.activities %></p>
+    <% end %>
+<% end %>
