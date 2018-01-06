@@ -1,7 +1,11 @@
 <h1>Newly Created Trips..</h1>
 
-<% @trips.each do |trip| %>
+<% @trips[0..3].each do |trip| %>
   <h2><%= trip.name %></h2>
   <p><%= trip.destination %></p>
   <p><%= trip.activities %></p>
 <% end %>
+
+<a href="/trips/new">Create a Trip</a>
+<a href="/users/<%= current_user.slug %>">My Trips</a>
+<a href="/logout">Logout</a>

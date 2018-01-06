@@ -1,5 +1,4 @@
 <% if @user == current_user %>
-
   <h1>Hi, <%= @user.username %></h1>
   <h3>Your Trips:</h3>
   <% @user.trips.each do |trip| %>
@@ -19,3 +18,8 @@
       <p><%= trip.activities %></p>
     <% end %>
 <% end %>
+
+<a href="/trips">Homepage</a>
+<a href="/trips/new">Create a Trip</a>
+<a href="/users/<%= current_user.slug %>">My Trips</a>
+<a href="/logout">Logout</a>
