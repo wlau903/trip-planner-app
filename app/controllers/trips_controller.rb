@@ -20,10 +20,12 @@ class TripsController < ApplicationController
 
   post '/trips' do
     if params[:name] == "" || params[:date] == "" || params[:destination] == "" || params[:activities] == ""
+      flash[:message] = "Please fill in all fields"
       redirect("/trips/new")
     else
       @trip = current_user.trips.create(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities])
       @trip.save
+      flash[:message] = "Trip successfully created!"
       redirect("/trips/#{@trip.id}")
     end
   end
@@ -53,19 +55,23 @@ class TripsController < ApplicationController
   patch '/trips/:id' do
     @trip = Trip.find_by_id(params[:id])
     if params[:name] == "" || params[:date] == "" || params[:destination] == "" || params[:activities] == ""
+      flash[:message] = "Please fill in all fields"
       redirect("/trips/#{@trip.id}/edit")
     else
       @trip.update(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities])
       @trip.user_id = current_user.id
       @trip.save
+      flash[:message] = "Trip successfully saved!"
       redirect("/trips/#{@trip.id}")
     end
   end
 
   get '/trips/:id/delete' do
     if logged_in?
-      @trip = Trip.find_by_id(params[:id]) #show message: are you sure?
+      @trip = Trip.find_by_id(params[:id])
+      flash[:message] = "Delete this trip?" 
       @trip.delete
+      flash[:message] = "Trip successfully deleted"
       redirect("/trips")
     else
       redirect("/login")
