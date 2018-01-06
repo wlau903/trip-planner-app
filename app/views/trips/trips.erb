@@ -1,4 +1,6 @@
-<h1>Newly Created Trips..</h1>
+<h1>Hi, <%= current_user.username %></h1>
+
+<h1>Newly created trips..</h1>
 
 <% @trips[0..3].each do |trip| %>
   <h2><%= trip.name %></h2>
