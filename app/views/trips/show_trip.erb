@@ -1,7 +1,7 @@
 <h1><%= @trip.name %></h1>
 
 <h2><%= @trip.destination %></h2>
-<p><%= @trip.date %></p>
+<p><%= @trip.date.strftime('%B %d, %Y') %></p>
 
 <p><%= @trip.activities %></p>
 

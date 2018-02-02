@@ -1,4 +1,8 @@
+require 'rack-flash'
+
 class TripsController < ApplicationController
+
+use Rack::Flash
 
   get '/trips' do
     if logged_in?
@@ -25,7 +29,6 @@ class TripsController < ApplicationController
     else
       @trip = current_user.trips.create(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities])
       @trip.save
-      flash[:message] = "Trip successfully created!"
       redirect("/trips/#{@trip.id}")
     end
   end
@@ -61,7 +64,6 @@ class TripsController < ApplicationController
       @trip.update(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities])
       @trip.user_id = current_user.id
       @trip.save
-      flash[:message] = "Trip successfully saved!"
       redirect("/trips/#{@trip.id}")
     end
   end
@@ -69,9 +71,7 @@ class TripsController < ApplicationController
   get '/trips/:id/delete' do
     if logged_in?
       @trip = Trip.find_by_id(params[:id])
-      flash[:message] = "Delete this trip?" 
       @trip.delete
-      flash[:message] = "Trip successfully deleted"
       redirect("/trips")
     else
       redirect("/login")

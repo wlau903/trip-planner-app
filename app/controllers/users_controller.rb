@@ -1,4 +1,8 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+
+use Rack::Flash
 
   get '/signup' do
     if !logged_in?
@@ -16,7 +20,6 @@ class UsersController < ApplicationController
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      flash[:message] = "User successfully created!"
       #binding.pry
       redirect("/trips")
     end
@@ -36,8 +39,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect("/trips")
     else
-      flash[:message] = "Sorry, please try again"
-      redirect("/signup")
+      flash[:message] = "Sorry, we couldn't find you. Please try again or create an account"
+      redirect("/login")
     end
   end
 

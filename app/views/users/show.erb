@@ -3,7 +3,7 @@
   <h3>Your Trips:</h3>
   <% @user.trips.each do |trip| %>
     <h4><a href="/trips/<%= trip.id %>"><%= trip.name%></a></h4>
-    <p><%= trip.date %></p>
+    <p><%= trip.date.strftime('%B %d, %Y') %></p>
     <p><%= trip.destination %></p>
     <p><%= trip.activities %></p>
   <% end %>
