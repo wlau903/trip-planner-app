@@ -1,10 +1,12 @@
-<h1><%= @trip.name %></h1>
+<label>Trip Name: </label><h1><%= @trip.name %></h1>
 
-<h2><%= @trip.destination %></h2>
-<p><%= @trip.date.strftime('%B %d, %Y') %></p>
+<label>Destination: </label><h2><%= @trip.destination %></h2>
+<label>Date: </label><p><%= @trip.date.strftime('%B %d, %Y') %></p>
 
-<p><%= @trip.activities %></p>
+<label>Activities: </label><p><%= @trip.activities %></p>
 
+
+<a href="/users/<%= current_user.slug %>">My Trips</a>
+<a href="/trips/new">Create a Trip</a>
 <a href="/trips/<%= @trip.id %>/edit">Edit Trip</a>
-
 <a href="/trips/<%= @trip.id %>/delete">Delete Trip</a>
