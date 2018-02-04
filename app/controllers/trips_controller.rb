@@ -27,7 +27,7 @@ use Rack::Flash
       flash[:message] = "Please fill in all fields"
       redirect("/trips/new")
     else
-      @trip = current_user.trips.create(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities])
+      @trip = current_user.trips.create(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities], notes: params[:notes])
       @trip.save
       redirect("/trips/#{@trip.id}")
     end
@@ -61,7 +61,7 @@ use Rack::Flash
       flash[:message] = "Please fill in all fields"
       redirect("/trips/#{@trip.id}/edit")
     else
-      @trip.update(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities])
+      @trip.update(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities], notes: params[:notes])
       @trip.user_id = current_user.id
       @trip.save
       redirect("/trips/#{@trip.id}")
