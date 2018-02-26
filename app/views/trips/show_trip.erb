@@ -1,10 +1,10 @@
 <label>Trip Name: </label><h1><%= @trip.name %></h1>
 
 <label>Destination: </label><h2><%= @trip.destination %></h2>
-<label>Date: </label><p><%= @trip.date.strftime('%B %d, %Y') %></p>
+<label><strong>Date: </strong></label><p><%= @trip.date.strftime('%B %d, %Y') %></p>
 
-<label>Activities: </label><p><%= @trip.activities %></p>
-<label>Notes: </label><p><%= @trip.notes %></p>
+<label><strong>Activities: </strong></label><p><%= @trip.activities %></p>
+<label><strong>Notes: </strong></label><p><%= @trip.notes %></p>
 
 
 <a href="/users/<%= current_user.slug %>">My Trips</a>

@@ -36,6 +36,7 @@ use Rack::Flash
   get '/trips/:id' do
     if logged_in?
       @trip = Trip.find_by_id(params[:id])
+      #binding.pry
       erb :'/trips/show_trip'
     else
       redirect("/login")

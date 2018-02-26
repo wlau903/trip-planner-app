@@ -1,11 +1,12 @@
 <% if @user == current_user %>
-  <h1><%= @user.username %></h1>
+  <h1>Hi, <%= @user.username %>!</h1>
   <h3>Your Trips:</h3>
   <% @user.trips.each do |trip| %>
     <h4><a href="/trips/<%= trip.id %>"><%= trip.name%></a></h4>
-    <p><%= trip.date.strftime('%B %d, %Y') %></p>
-    <p><%= trip.destination %></p>
-    <p><%= trip.activities %></p>
+    <p><strong>Destination: </strong><%= trip.destination %></p>
+    <p><strong>Date: </strong><%= trip.date.strftime('%B %d, %Y') %></p>
+    <p><strong>Activities: </strong><%= trip.activities %></p>
+    <p><strong>Notes: </strong><%= trip.notes %></p>
   <% end %>
 
 <% else %>
@@ -14,8 +15,8 @@
     <h3>Their Trips:</h3>
     <% @user.trips.each do |trip| %>
       <h4><a href="/trips/<%= trip.id %>"><%= trip.name%></a></h4>
-      <p><%= trip.destination %></p>
-      <p><%= trip.activities %></p>
+      <p><strong>Destination: </strong><%= trip.destination %></p>
+      <p><strong>Activities: </strong><%= trip.activities %></p>
     <% end %>
 <% end %>
 
