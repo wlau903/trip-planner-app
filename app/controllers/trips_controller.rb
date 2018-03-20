@@ -23,12 +23,11 @@ use Rack::Flash
   end
 
   post '/trips' do
-    if params[:name] == "" || params[:date] == "" || params[:destination] == "" || params[:activities] == ""
+    if params[:trip][:name] == "" || params[:trip][:date] == "" || params[:trip][:destination] == "" || params[:trip][:activities] == ""
       flash[:message] = "Please fill in all fields"
       redirect("/trips/new")
     else
-      @trip = current_user.trips.create(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities], notes: params[:notes])
-      @trip.save
+      @trip = current_user.trips.create(params[:trip])
       redirect("/trips/#{@trip.id}")
     end
   end
@@ -47,6 +46,7 @@ use Rack::Flash
     if logged_in?
       @trip = Trip.find_by_id(params[:id])
       if @trip.user_id == current_user.id
+        #binding.pry
         erb :'/trips/edit_trip'
       else
         redirect("/trips")
@@ -58,16 +58,20 @@ use Rack::Flash
 
   patch '/trips/:id' do
     @trip = Trip.find_by_id(params[:id])
-    if params[:name] == "" || params[:date] == "" || params[:destination] == "" || params[:activities] == ""
+    if params[:trip][:name] == "" || params[:trip][:date] == "" || params[:trip][:destination] == "" || params[:trip][:activities] == ""
       flash[:message] = "Please fill in all fields"
       redirect("/trips/#{@trip.id}/edit")
     else
-      @trip.update(name: params[:name], date: params[:date], destination: params[:destination], activities: params[:activities], notes: params[:notes])
-      @trip.user_id = current_user.id
-      @trip.save
-      redirect("/trips/#{@trip.id}")
+      if @trip.user == current_user
+        @trip.update(params[:trip])
+        redirect("/trips/#{@trip.id}")
+      else
+        redirect("/trips")
+      end
     end
   end
+
+  # params => {trip: {name: "", date: "", destination: ""}}
 
   get '/trips/:id/delete' do
     if logged_in?

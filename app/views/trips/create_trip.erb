@@ -6,15 +6,15 @@
 
 <form action="/trips" method="post">
 
-  <input type="text" name="name" placeholder="Trip Name:">
+  <input type="text" name="trip[name]" placeholder="Trip Name:">
 
-  <input type="date" name="date" placeholder="Date: (mm-dd-yyyy) ">
+  <input type="date" name="trip[date]" placeholder="Date: (mm-dd-yyyy) ">
   <!-- delete date placeholder?-->
-  <input type="text" name="destination" placeholder="Destination:">
+  <input type="text" name="trip[destination]" placeholder="Destination:">
 
-  <input type="text" name="activities" placeholder="Activities:">
+  <input type="text" name="trip[activities]" placeholder="Activities:">
 
-  <input type="text" name="notes" placeholder="Notes: (optional) ">
+  <input type="text" name="trip[notes]" placeholder="Notes: (optional) ">
 
   <input type="submit" name="submit" value="Create Trip">
 </form>

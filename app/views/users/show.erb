@@ -1,5 +1,5 @@
 <% if @user == current_user %>
-  <h1>Hi, <%= @user.username %>!</h1>
+
   <h3>Your Trips:</h3>
   <% @user.trips.each do |trip| %>
     <h4><a href="/trips/<%= trip.id %>"><%= trip.name%></a></h4>

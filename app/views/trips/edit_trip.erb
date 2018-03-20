@@ -7,15 +7,15 @@
 <form action="/trips/<%= @trip.id %>" method="post">
   <input type="hidden" name="_method" value="PATCH">
 
-  <label>Trip Name: </label><input type="text" name="name" value="<%= @trip.name %>"><br></br>
+  <label>Trip Name: </label><input type="text" name="trip[name]" value="<%= @trip.name %>"><br></br>
 
-  <label>Destination: </label><input type="text" name="destination" value="<%= @trip.destination %>"><br></br>
+  <label>Destination: </label><input type="text" name="trip[destination]" value="<%= @trip.destination %>"><br></br>
 
-  <label>Date: </label><input type="text" name="date" value="<%= @trip.date.strftime('%B %d, %Y') %>"><br></br>
+  <label>Date: </label><input type="text" name="trip[date]" value="<%= @trip.date.strftime('%B %d, %Y') %>"><br></br>
   <!-- consider changing input type to date for easier editing -->
-  <label>Activities: </label><input type="text" name="activities" value="<%= @trip.activities %>"><br></br>
+  <label>Activities: </label><input type="text" name="trip[activities]" value="<%= @trip.activities %>"><br></br>
 
-  <label>Notes: (optional) </label><input type="text" name="notes" value="<% @trip.notes %>"><br></br>
+  <label>Notes: (optional) </label><input type="text" name="trip[notes]" value="<%= @trip.notes %>"><br></br>
 
   <input type="submit" name="submit" value="Save Trip">
 </form>
